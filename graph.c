@@ -59,11 +59,11 @@ int GraphHasEdge(graphT g, int source, int sink) {
 }
 
 void GraphAddEdge(graphT g, int source, int sink) {
-    assert(source > -1);
-    assert(source < g->n);
+    assert(source > -1); //source is at least one
+    assert(source < g->n); //source is no more than n nodes
     assert(sink > -1);
     assert(sink < g->n);
-    if (source != sink && !GraphHasEdge(g, source, sink)) {
+    if (source != sink && !GraphHasEdge(g, source, sink)) { //(1) not adding (u,u) (2) graph has doesn't already have u->v
         while(g->alist[source]->d >= g->alist[source]->len) {
             g->alist[source]->len += 1; // OMG THIS SUCKS!
             g->alist[source] = realloc(g->alist[source], sizeof(struct successors) + sizeof(int) * (g->alist[source]->len - 1));
