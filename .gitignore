@@ -1,0 +1,7 @@
+correct_output/*
+input/*
+random_graphs_input/*
+randomgraph
+sccIterative
+sccRecursive
+rg
