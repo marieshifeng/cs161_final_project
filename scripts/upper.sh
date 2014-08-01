@@ -4,7 +4,7 @@ declare -a numVertices=("100" "1000" "10000" "50000" "100000" "200000" "300000" 
 "mkdir" "-p" "random_graph/upper/my_output"
 "touch" "upper.txt"
 for n in "${numVertices[@]}"; do
-    m=$((n*n))
+    m=$(((n*n)/10))
     counter=0
     index=0
     printf "%d: " "$n" >> "upper.txt"

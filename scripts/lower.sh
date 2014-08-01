@@ -1,10 +1,12 @@
 #!/bin/sh
 declare -a numVertices=("100" "1000" "10000" "50000" "100000" "200000" "300000" "500000")
+declare -a startingBounds=("400" "6000" "80000" "469897" "1000000" "2120412" "3286273" "5698970")
 "mkdir" "-p" "random_graph/lower/input"
 "mkdir" "-p" "random_graph/lower/my_output"
 "touch" "lower.txt"
-for n in "${numVertices[@]}"; do
-    m=$((n+n+n))
+for((j=0;j<10;j++)); do
+    n=${numVertices[j]}
+    m=${startingBounds[j]}
     counter=0
     index=0
     printf "%d: " "$n" >> "lower.txt"
@@ -28,10 +30,12 @@ for n in "${numVertices[@]}"; do
             if [ $counter -eq 1 ]
                 then
                 printf "%d " "$m" >> "lower.txt"
+                let index=$((index+1))
+                let m=$((m-1))
+            else
+                let m=$((m-m/(${startingBounds[j]}/2)))
             fi
-            let m=$((m-2))
             let counter=0
-            let index=$((index+1))
         else
             break
         fi
