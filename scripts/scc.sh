@@ -1,17 +1,11 @@
 #!/bin/sh
-"mkdir" "-p" "my_output"
-declare -a network=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
-for file in "${network[@]}"; do
-    input="input/network${file}.txt"
-    my_output="my_output/my_network${file}_output.txt"
-    correct_output="correct_output/network${file}_output.txt"
-    printf "Iterative %s: " "$file"
-    "time" "-p" "./sccIterative" "$input" "$my_output"
+for((i=1;i<11;i++)); do
+    input="scc_finder/input/network${i}.txt"
+    my_output="network${i}.txt"
+    correct_output="scc_finder/correct_output/network${i}_output.txt"
+    printf "Network %s: " "$i"
+    "time" "./sccfinder" "$input" "$my_output"
     "diff" "$my_output" "$correct_output"
-    # printf "Recursive %s: " "$file"
-    # "time" "./sccRecursive" "$input" "$my_output"
-    # "diff" "$my_output" "$correct_output"
-    printf "\n"
+    "rm" "$my_output"
 done
-"rm" "-r" "my_output"
 exit 0
