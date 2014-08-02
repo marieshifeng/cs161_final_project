@@ -13,7 +13,7 @@ do
   	
 	# To run on corn:
   printf "Network %s:\n " "$f"
-  "valgrind" "--leak-check=full" "--show-reachable=yes" "./sccfinder" "$input" "$my_output"
+  "valgrind" "--leak-check=full" "--show-reachable=yes" "./sccfinder" "$f" "$my_output"
   "time" "-p" "./sccfinder" "$f" "output.txt"
   printf "\n"
 done
