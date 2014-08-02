@@ -72,6 +72,7 @@ void GraphAddEdge(graphT g, int source, int sink) {
     // (2) Graph doesn't already have u -> v
     if (source != sink && !GraphHasEdge(g, source, sink)) {
         while(GraphOutDegreeForVertex(g, source) >= g->alist[source]->len) {
+            // g->alist[source]->len *= 2;
             g->alist[source]->len += 1; // OMG THIS SUCKS!
             g->alist[source] = realloc(g->alist[source], 
                 sizeof(struct successors) + sizeof(int) * 
