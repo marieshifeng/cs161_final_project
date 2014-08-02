@@ -2,7 +2,11 @@
 "mkdir" "-p" "random_graphs_input"
 for((n=100;n<10000000;n*=10)); do
 	m=$((n*7))
-	"./randomgraph" "$n" "$m" "random_graphs_input/${n}_${m}.txt"
+  # To run on local:
+  # "./randomgraph" "$n" "$m" "random_graphs_input/${n}_${m}.txt"
+
+  # To run on corn:
+	"valgrind" "--leak-check=full" "--show-reachable=yes" "./randomgraph" "$n" "$m" "random_graphs_input/${n}_${m}.txt"
 done
 FILES=random_graphs_input/*
 for f in $FILES
