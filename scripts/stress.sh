@@ -12,7 +12,7 @@ FILES=random_graphs_input/*
 for f in $FILES
 do
 	# To run on local:
-	# printf "Network %s:  " "$f" "output.txt"
+	# printf "Network %s:  " "$f"
   # "time" "./sccfinder" "$f" "output.txt"
   	
 	# To run on corn:
