@@ -12,7 +12,7 @@ for((i=1;i<11;i++)); do
     
     # To run on corn:
     # printf "Network %s\n: " "$i"
-    # "time" "-p" "./sccfinder" "$input" "$my_output"
+    # "valgrind" "--leak-check=full" "--show-reachable=yes" "time" "-p" "./sccfinder" "$input" "$my_output"
     # "diff" "$my_output" "$correct_output"
     # "rm" "$my_output"
     # printf "\n"
