@@ -12,12 +12,12 @@ FILES=random_graphs_input/*
 for f in $FILES
 do
 	# To run on local:
-	# printf "Network %s:  " "$f"
+	# printf "Network %s:  " "$f" "output.txt"
   # "time" "./sccfinder" "$f" "output.txt"
   	
 	# To run on corn:
   printf "Network %s:\n " "$f"
-  "valgrind" "--leak-check=full" "--show-reachable=yes" "./sccfinder" "$f" "$my_output"
+  "valgrind" "--leak-check=full" "--show-reachable=yes" "./sccfinder" "$f" "output.txt"
   "time" "-p" "./sccfinder" "$f" "output.txt"
   printf "\n"
 done
