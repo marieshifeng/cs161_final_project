@@ -8,13 +8,14 @@ FILES=random_graphs_input/*
 for f in $FILES
 do
 	# To run on local:
-	printf "Network %s:  " "$f"
-  	"time" "./sccfinder" "$f" "output.txt"
+	# printf "Network %s:  " "$f"
+  # "time" "./sccfinder" "$f" "output.txt"
   	
-  	# To run on corn:
-    # printf "Network %s\n: " "$f"
-    # "time" "-p" "./sccfinder" "$f" "output.txt"
-    # printf "\n"
+	# To run on corn:
+  printf "Network %s:\n " "$f"
+  "valgrind" "--leak-check=full" "--show-reachable=yes" "./sccfinder" "$input" "$my_output"
+  "time" "-p" "./sccfinder" "$f" "output.txt"
+  printf "\n"
 done
 "rm" "output.txt"
 "rm" "-rf" "random_graphs_input"
