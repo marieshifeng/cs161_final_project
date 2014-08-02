@@ -17,29 +17,11 @@ struct graph {
     } *alist[1];
 };
 
-// struct vertex {
-// 	int value;
-// 	vertex *next;
-// };
-
-// typedef struct vertex *vertexT;
-
-// struct graph {
-//     int n; // Number of vertices
-//     int m; // Number of edges
-//     struct successors {
-//     	int d; // Out degree; probably can remove...
-//         char isSorted;
-//         vertexT v;
-//     } *alist[1];
-// };
-
 typedef struct graph *graphT;
-
 graphT GraphInit(int numVertices);
-void GraphDestroy(graphT g);
 int GraphNumVertices(graphT g);
 int GraphNumEdges(graphT g);
+void GraphDestroy(graphT g);
 int GraphOutDegreeForVertex(graphT g, int source);
 int GraphHasEdge(graphT g, int source, int sink);
 void GraphAddEdge(graphT g, int source, int sink);

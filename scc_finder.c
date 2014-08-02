@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "graph.h"
-#include "stack.h"
+#include "helpers/graph.h"
+#include "helpers/stack.h"
 
 #define LIMIT 5
 #define UNDEFINED (-1)
@@ -28,7 +28,7 @@ void InitializeArrays(int n) {
     vertexIndex[i] = UNDEFINED;
     lowlink[i] = UNDEFINED;
     onStack[i] = 0;
-    if (i < LIMIT) { output[i] = 0; } // We are protected because n >= 100
+    if (i < LIMIT) { output[i] = 0; }
   }
 }
 
@@ -36,7 +36,7 @@ int intcmpmax(const void *a, const void *b) {
   return *((const int *) b) - *((const int *) a); 
 }
 
-void AddElementToTarget(int element) {
+void AddElementToOutput(int element) {
   output[LIMIT - 1] = element;
   if (output[LIMIT - 1] > output[LIMIT - 2]) { 
     qsort(output, LIMIT, sizeof(int), intcmpmax); 
@@ -72,7 +72,7 @@ void IterativeTarjan(int v, stackT s, graphT g) {
   onStack[v] = 1;
   int last = v;
   while (1) {
-    if (vIndex[last] < g->alist[last]->d) {
+    if (vIndex[last] < GraphOutDegreeForVertex(g,last)) {
       int w = g->alist[last]->list[vIndex[last]];
       vIndex[last]++;
       if (vertexIndex[w] == UNDEFINED) {
@@ -84,7 +84,7 @@ void IterativeTarjan(int v, stackT s, graphT g) {
         StackPush(s, w);
         onStack[w] = 1;
         last = w;
-      } else if (onStack[w] && vertexIndex[w] < lowlink[last]){
+      } else if (onStack[w] && vertexIndex[w] < lowlink[last]) {
         lowlink[last] = vertexIndex[w];
       }
     } else {
@@ -97,11 +97,13 @@ void IterativeTarjan(int v, stackT s, graphT g) {
           onStack[top] = 0;
           size++;
         }
-        if (size > output[LIMIT - 1]) { AddElementToTarget(size); }
+        if (size > output[LIMIT - 1]) { AddElementToOutput(size); }
       }
       int newLast = parent[last];
       if (newLast != UNDEFINED) {
-        if (lowlink[last] < lowlink[newLast]) { lowlink[newLast] = lowlink[last]; }
+        if (lowlink[last] < lowlink[newLast]) { 
+          lowlink[newLast] = lowlink[last]; 
+        }
         last = newLast;
       } else {
         break;
