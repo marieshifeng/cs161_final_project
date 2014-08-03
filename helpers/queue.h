@@ -8,15 +8,16 @@
 struct queue{
   int* contents;
   int maxSize;
-  int frontIndex;
-  int rearIndex;
+  int front;
+  int rear;
 };
 
 typedef struct queue* queueT;
 queueT QueueInit(int maxSize);
-void QueueDestroy(stackT stackP);
-void QueueEnqueue(stackT stackP, int element);
-int QueueDeQueue(stackT stackP);
-int QueueIsEmpty(stackT stackP);
+void QueueDestroy(queueT queueP);
+void QueueEnqueue(queueT queueP, int element);
+int QueueDequeue(queueT queueP);
+int QueueIsEmpty(queueT queueP);
+int QueueIsFull(queueT queueP);
 
 #endif  /* not defined _QUEUE_H */

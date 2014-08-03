@@ -23,7 +23,7 @@ queueT QueueInit(int maxSize){
 }
 
 void QueueDestroy(queueT queueP){
-  free(queue->contents);
+  free(queueP->contents);
   queueP->contents = NULL;
   queueP->maxSize = 0;
   queueP->front = 0;
@@ -31,7 +31,7 @@ void QueueDestroy(queueT queueP){
   free(queueP);
 }
 
-void QueueEnqueue(stackT stackP, int element){
+void QueueEnqueue(queueT queueP, int element){
   if (QueueIsFull(queueP)){
     fprintf(stderr, "Can't enqueue element: queue is full.\n");
     exit(1);
@@ -55,10 +55,3 @@ int QueueIsEmpty(queueT queueP){
 int QueueIsFull(queueT queueP){
   return queueP->rear >= queueP->maxSize -1;
 }
-
-
-
-
-
-
-int QueueIsEmpty(stackT stackP);
