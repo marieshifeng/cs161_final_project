@@ -6,17 +6,17 @@ for((i=1;i<11;i++)); do
     printf "Network %s" "$i"
 
     # To run on local:
-    # printf ": "
-    # "time" "./sccfinder" "$input" "$my_output"
-    # "diff" "$my_output" "$correct_output"
-    # "rm" "$my_output"
-
-    # To run on corn:
-    printf "\n"
-    "valgrind" "--leak-check=full" "--show-reachable=yes" "./sccfinder" "$input" "$my_output"
-    "time" "-p" "./sccfinder" "$input" "$my_output"
+    printf ": "
+    "time" "./sccfinder" "$input" "$my_output"
     "diff" "$my_output" "$correct_output"
     "rm" "$my_output"
-    printf "\n"
+
+    # To run on corn:
+    # printf "\n"
+    # "valgrind" "--leak-check=full" "--show-reachable=yes" "./sccfinder" "$input" "$my_output"
+    # "time" "-p" "./sccfinder" "$input" "$my_output"
+    # "diff" "$my_output" "$correct_output"
+    # "rm" "$my_output"
+    # printf "\n"
 done
 exit 0

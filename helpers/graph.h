@@ -25,7 +25,8 @@ void GraphDestroy(graphT g);
 int GraphOutDegreeForVertex(graphT g, int source);
 int GraphHasEdge(graphT g, int source, int sink);
 void GraphAddEdge(graphT g, int source, int sink);
-void GraphForEach(graphT g, int source, void (*f)(graphT g, int source, int sink, void *data), void *data);
+void GraphForEach(graphT g, int source, 
+	void (*f)(graphT g, int source, int sink, void *data), void *data);
 void GraphPrint(graphT g);
 void GraphPrintDescription(graphT g);
 
