@@ -1,1 +1,2 @@
-CS161 Final Project: Alice Yeh and Marie Feng
+user: mfeng90 (Feng, Marie)
+user: aliceyeh (Yeh, Alice)

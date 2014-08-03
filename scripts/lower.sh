@@ -19,8 +19,12 @@ for((i=0;i<8;i++)); do
                 let numSCGs=$((numSCGs+1))
                 printf "|"
             else
-               printf "."
-            fi 
+                printf "."
+            fi
+            if [ $numSCGs -gt 1 ]
+                then
+                let j=10
+            fi
             sleep 1
         done
         printf "%d/10\n" "$numSCGs"
