@@ -4,11 +4,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack.h"       
+#include "stack.h"
 
 stackT StackInit(int maxSize) {
   stackT stackP;
-  stackP = malloc(sizeof(struct stack) + sizeof(int) * maxSize);
+  stackP = malloc(sizeof(struct stack));
   int *newContents;
   newContents = malloc(sizeof(int) * maxSize);
   if (newContents == NULL) {
