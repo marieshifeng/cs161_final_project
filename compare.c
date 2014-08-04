@@ -9,7 +9,7 @@
 
 
 void findShortestPath(graphT g, int u, int v){
-
+    // queue
 
 // 1  procedure BFS(G,v) is
 // 2      create a queue Q
@@ -58,5 +58,6 @@ void findNumTriangles(graphT g){
 int main(int argc, char **argv) {
   queueT q = QueueInit(100);
   QueueDestroy(q);
+  printf("HI - moving along\n");
   return 0; 
 } 
