@@ -7,9 +7,7 @@
 #define LIMIT 5
 #define UNDEFINED (-1)
 
-
-void findShortestPath(graphT g, int u, int v){
-
+void findShortestPath(graphT g, int u, int v) {
 
 // 1  procedure BFS(G,v) is
 // 2      create a queue Q

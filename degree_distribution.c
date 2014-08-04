@@ -61,15 +61,6 @@ void PrintDegrees(int maximum, int vertices, int edges, const char *outputFile) 
   for(int i = 0; i < maximum; ++i) {
     fprintf(out, "%d %d\n", inDegreeDistribution[i], outDegreeDistribution[i]);
   }
-  // for(int i = 0; i < maximum; ++i) {
-  //   fprintf(out, "%d", inDegreeDistribution[i]);
-  //   if (i < maximum) fprintf(out, " ");
-  // }
-  // fprintf(out, "\n");
-  // for(int i = 0; i < maximum; ++i) {
-  //   fprintf(out, "%d", outDegreeDistribution[i]);
-  //   if (i < maximum) fprintf(out, " ");
-  // }
   fclose(out);
 }
 
