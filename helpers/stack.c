@@ -8,7 +8,7 @@
 
 stackT StackInit(int maxSize) {
   stackT stackP;
-  stackP = malloc(sizeof(struct stack) + sizeof(int) * maxSize);
+  stackP = malloc(sizeof(struct stack) + sizeof(int) * maxSize); // CHANGE!
   int *newContents;
   newContents = malloc(sizeof(int) * maxSize);
   if (newContents == NULL) {
