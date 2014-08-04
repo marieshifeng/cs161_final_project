@@ -16,7 +16,7 @@ graphT GraphInit(int numVertices) {
     for(int i = 0; i < numVertices; ++i) {
         g->alist[i] = malloc(sizeof(struct successors));
         assert(g->alist[i]);
-        g->alist[i]->c = 0;
+        // g->alist[i]->c = 0;
         g->alist[i]->d = 0;
         g->alist[i]->len = 1;
         g->alist[i]->isSorted= 1;
@@ -39,11 +39,11 @@ int GraphOutDegreeForVertex(graphT g, int source) {
     return g->alist[source]->d;
 }
 
-int GraphInDegreeForVertex(graphT g, int source) {
-    assert(source > -1);
-    assert(source < GraphNumVertices(g));
-    return g->alist[source]->c;
-}
+// int GraphInDegreeForVertex(graphT g, int source) {
+//     assert(source > -1);
+//     assert(source < GraphNumVertices(g));
+//     return g->alist[source]->c;
+// }
 
 int intcmp(const void *a, const void *b) { 
     return *((const int *) a) - *((const int *) b); 
@@ -85,7 +85,7 @@ void GraphAddEdge(graphT g, int source, int sink) {
                 (g->alist[source]->len - 1));
         }
         g->alist[source]->list[g->alist[source]->d++] = sink;
-        g->alist[sink]->c++;
+        // g->alist[sink]->c++;
         g->alist[source]->isSorted = 0;
         g->m++;
     }
@@ -110,11 +110,11 @@ void GraphPrint(graphT g) {
     }
 }
 
-void GraphPrintDegrees(graphT g) {
-    for (int i = 0; i < GraphNumVertices(g); ++i) {
-        printf("%d -> <%d> -> %d\n", GraphInDegreeForVertex(g, i), i + 1, GraphOutDegreeForVertex(g, i));
-    }
-}
+// void GraphPrintDegrees(graphT g) {
+//     for (int i = 0; i < GraphNumVertices(g); ++i) {
+//         printf("%d -> <%d> -> %d\n", GraphInDegreeForVertex(g, i), i + 1, GraphOutDegreeForVertex(g, i));
+//     }
+// }
 
 void GraphPrintDescription(graphT g) { 
     printf("The graph has %d nodes and %d edges.\n", 
