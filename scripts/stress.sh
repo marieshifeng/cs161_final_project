@@ -1,4 +1,5 @@
 #!/bin/sh
+# Creates big graphs and tests scc_finder.c's runtime performance
 "mkdir" "-p" "random_graphs_input"
 for((n=100;n<10000000;n*=10)); do
 	m=$((n*7))

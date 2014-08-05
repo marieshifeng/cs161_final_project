@@ -15,8 +15,10 @@ char *onStack;
 int *vIndex;
 int *parent;
 
-// Globals for output file
-int output[LIMIT];
+// Globals for comparison against real-world networks
+int counter = 0;
+int *allSCCs;
+int numVertices = 0;
 
 void InitializeArrays(int n) {
   vertexIndex = malloc(sizeof(int) * n);
@@ -24,11 +26,13 @@ void InitializeArrays(int n) {
   vIndex = malloc(sizeof(int) * n);
   parent = malloc(sizeof(int) * n);
   onStack = malloc(sizeof(char) * n);
+  allSCCs = malloc(sizeof(int) * n);
+  numVertices = n;
   for (int i = 0; i < n; ++i) {
     vertexIndex[i] = UNDEFINED;
     lowlink[i] = UNDEFINED;
     onStack[i] = 0;
-    if (i < LIMIT) { output[i] = 0; }
+    allSCCs[i] = 0;
   }
 }
 
@@ -36,11 +40,8 @@ int intcmpmax(const void *a, const void *b) {
   return *((const int *) b) - *((const int *) a); 
 }
 
-void AddElementToOutput(int element) {
-  output[LIMIT - 1] = element;
-  if (output[LIMIT - 1] > output[LIMIT - 2]) { 
-    qsort(output, LIMIT, sizeof(int), intcmpmax); 
-  }
+void AddElementToCompareFile(int element) {
+  allSCCs[counter++] = element;
 }
 
 graphT ReadFileAndBuildGraph(const char *inputFile) {
@@ -61,8 +62,6 @@ graphT ReadFileAndBuildGraph(const char *inputFile) {
   fclose(ifp);
   return g;
 }
-
-AddElementToCompareFile(int )
 
 void IterativeTarjan(int v, stackT s, graphT g) {
   vertexIndex[v] = index;
@@ -99,7 +98,7 @@ void IterativeTarjan(int v, stackT s, graphT g) {
           onStack[top] = 0;
           size++;
         }
-        if (size > output[LIMIT - 1]) { AddElementToOutput(size); }
+        AddElementToCompareFile(size);
       }
       int newLast = parent[last];
       if (newLast != UNDEFINED) {
@@ -112,6 +111,7 @@ void IterativeTarjan(int v, stackT s, graphT g) {
       }
     }
   }
+  qsort(allSCCs, numVertices, sizeof(int), intcmpmax); 
 }
 
 void FindSCCs(const char *inputFile) {
@@ -128,6 +128,7 @@ void FindSCCs(const char *inputFile) {
   free(onStack);
   free(vIndex);
   free(parent);
+  free(allSCCs);
 }
 
 void PrintSCCs(const char *outputFile) {
@@ -136,9 +137,9 @@ void PrintSCCs(const char *outputFile) {
     fprintf(stderr, "Couldn't open output file %s!\n", outputFile);
     exit(1);
   }
-  for (unsigned i = 0; i < LIMIT; ++i) {
-    fprintf(out, "%u", output[i]);
-    if (i < LIMIT - 1) fprintf(out, "\t");
+  fprintf(out, "Total SCCs: %d\n", counter);
+  for (unsigned i = 0; i < numVertices; ++i) {
+    fprintf(out, "%u\n", allSCCs[i]);
   }
   fclose(out);
 }

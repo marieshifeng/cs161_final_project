@@ -1,7 +1,6 @@
 #!/bin/sh
-output="output.txt"
-"mkdir" "-p" "real_networks/degree_distribution" "real_networks/random_graphs/"
-"touch" "$output"
+# Given a graph, gives a distribution of in and out degree
+"mkdir" "-p" "real_networks/degree_distribution"
 FILES=real_networks/input/*
 for input in $FILES
 do

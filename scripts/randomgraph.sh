@@ -1,4 +1,5 @@
 #!/bin/sh
+# Creates ten random graphs for each real networks and finds top five SCCs
 declare -a vertices=("36694" "265216" "75880" "77362" "875714")
 declare -a edges=("367664" "418960" "508839" "828164" "5105042")
 "mkdir" "-p" "real_networks/my_output" "real_networks/random_graphs/"
