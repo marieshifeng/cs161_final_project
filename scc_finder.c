@@ -121,6 +121,7 @@ void FindSCCs(const char *inputFile) {
   for (int i = 0; i < GraphNumVertices(g); ++i) {
     if (vertexIndex[i] == UNDEFINED) { IterativeTarjan(i, s, g); }
   }
+  GraphPrint(g);
   StackDestroy(s);
   GraphDestroy(g);
   free(vertexIndex);

@@ -8,11 +8,11 @@ do
   network=${filename%%.*}
   network_scc="real_networks/my_output/${network}_ssc.txt"
   printf "Network %s" "$network"
-  "./scccompare" "$input" "$network_scc"
+  "./sccc" "$input" "$network_scc"
   for((j=0;j<10;j++)); do
     graph="real_networks/random_graphs/${network}_${j}.txt"
     graph_scc="real_networks/my_output/${network}_${j}_ssc.txt"
-  	"./scccompare" "$graph" "$graph_scc"
+  	"./sccc" "$graph" "$graph_scc"
   	printf "."
     sleep 1
   done
