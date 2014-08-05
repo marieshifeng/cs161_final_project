@@ -73,7 +73,6 @@ void findSSShortestPath(graphT g, int v, int **distance) {
     // printArray(distance, n);
     QueueDestroy(queue);
     free(parent);
-    // return distance;
 }
 
 float findAvgSingleArrayInt(int* array){
@@ -84,7 +83,6 @@ float findAvgSingleArrayInt(int* array){
         }
     }
     float avg = (float)sum/(float)n;
-    // free(array);
     return avg;
 }
 
@@ -94,7 +92,6 @@ float findAvgSingleArrayFloat(float* array){
       sum += array[i];
     }
     float avg = sum/n;
-    // free(array);
     return avg;
 }
     
@@ -106,15 +103,38 @@ float findAvgPathLength(graphT g){
         findSSShortestPath(g, i, &distance);
         vertexAvg[i] = findAvgSingleArrayInt(distance);
         free(distance);
-
-        // int* oneVertex = findSSShortestPath(g, i);
-        // vertexAvg[i] = findAvgSingleArrayInt(oneVertex);
-        // free(oneVertex);
-
+        printf("Calculating Shortest Path for Node %d\n", i);
     }
     float avgPL = findAvgSingleArrayFloat(vertexAvg);
     free(vertexAvg);
     return avgPL;
+}
+
+int findMaxOfArray(int* array){
+    int max = 0;
+    for(int i = 0; i< n; ++i){
+      if (max < array[i] && array[i] != INT_MAX) max = array[i];
+    }
+    return max;
+}
+
+void findAvgPathLengthNetworkDiameter(graphT g, float* avg, int* max){
+    int insideMax = 0;
+    float* vertexAvg = malloc(sizeof(float) * n);
+    for (int i = 0; i < n; ++i){
+        int* distance = malloc(sizeof(int) * n);
+        findSSShortestPath(g, i, &distance);
+        vertexAvg[i] = findAvgSingleArrayInt(distance);
+
+        int thisMax = findMaxOfArray(distance);
+        if (insideMax < thisMax) insideMax = thisMax;
+
+        free(distance);
+        printf("Calculating Shortest Path for Node %d\n", i);
+    }
+    *avg = findAvgSingleArrayFloat(vertexAvg);
+    *max = insideMax;
+    free(vertexAvg);
 }
 
 /*the maximum (shortest path) distance between any pair of nodes in a graph*/
@@ -127,21 +147,23 @@ void findNumTriangles(graphT g){
 }
 
 int main(int argc, char **argv) {
-    // graphT graph = ReadFileAndBuildGraph(argv[1]);
-    // n = GraphNumVertices(graph);
-    // float avg = findAvgPathLength(graph);
-    // printf("Avg shortest path for this graph: %f\n", avg);
-    // GraphDestroy(graph);
-    queueT q = QueueInit(10);
-    for (int i = 0; i < 10; i++) {
-        QueueEnqueue(q, i);
-        printf("%d ", i);
-        if (i < 10) printf("> ");
-    }
-    printf("\n");
-    while (!QueueIsEmpty(q)) {
-        printf("%d ", QueueDequeue(q));
-    }
-    QueueDestroy(q);
+    graphT graph = ReadFileAndBuildGraph(argv[1]);
+    n = GraphNumVertices(graph);
+    float avg;
+    int max;
+    findAvgPathLengthNetworkDiameter(graph, &avg, &max);
+    printf("Graph: %s\n Average Shortest Path: %f  Network Diameter: %d\n", argv[1], avg, max);
+    GraphDestroy(graph);
+    // queueT q = QueueInit(10);
+    // for (int i = 0; i < 10; i++) {
+    //     QueueEnqueue(q, i);
+    //     printf("%d ", i);
+    //     if (i < 10) printf("> ");
+    // }
+    // printf("\n");
+    // while (!QueueIsEmpty(q)) {
+    //     printf("%d ", QueueDequeue(q));
+    // }
+    // QueueDestroy(q);
     return 0; 
 } 
