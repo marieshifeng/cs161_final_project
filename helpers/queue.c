@@ -17,7 +17,8 @@ queueT QueueInit(int maxSize){
   }
   queueP->contents = newContents;
   queueP->maxSize = maxSize;
-  queueP->front = -1;
+  // queueP->front = 0;
+  queueP->front = 0;
   queueP->rear = -1;
   return queueP; 
 }
@@ -27,7 +28,8 @@ void QueueDestroy(queueT queueP){
   queueP->contents = NULL;
   queueP->maxSize = 0;
   queueP->front = 0;
-  queueP->rear = -1;
+  // queueP->rear = -1;
+  queueP->rear = 0;
   free(queueP);
 }
 
@@ -36,8 +38,8 @@ void QueueEnqueue(queueT queueP, int element){
     fprintf(stderr, "Can't enqueue element: queue is full.\n");
     exit(1);
   }
-  queueP->contents[queueP->rear++] = element;
-
+  // queueP->contents[queueP->rear++] = element; // if rear = 0
+  queueP->contents[++queueP->rear] = element; // if rear = -1
 }
 
 int QueueDequeue(queueT queueP){
@@ -45,11 +47,13 @@ int QueueDequeue(queueT queueP){
     fprintf(stderr, "Cannot dequeue: queue is already empty.\n");
     exit(1);
   }
-  return queueP->contents[queueP->front++];
+  return queueP->contents[queueP->front++]; // if front = 0
+
 }
 
 int QueueIsEmpty(queueT queueP){
-  return (queueP -> rear < 0 || queueP -> rear == queueP -> front);
+  // return (queueP -> rear < 0 || queueP -> rear == queueP -> front);
+  return (queueP -> rear < 0 || queueP -> rear < queueP -> front);
 }
 
 int QueueIsFull(queueT queueP){

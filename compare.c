@@ -37,63 +37,84 @@ void printArray(int* a, int n){
     printf("\n");
 }
 
-int* findSSShortestPath(graphT g, int v) {
+void findSSShortestPath(graphT g, int v, int **distance) {
+// int* findSSShortestPath(graphT g, int v) {
     queueT queue = QueueInit(n);
     // GraphPrint(g);
-    int* distance = malloc(sizeof(int) * n);
+    // int* distance = malloc(sizeof(int) * n);
     int* parent = malloc(sizeof(int) * n);
     for (int i = 0; i < n; ++i) {
-        distance[i] = INT_MAX;
+        // distance[i] = INT_MAX;
+        (*distance)[i] = INT_MAX;
         parent[i] = UNDEFINED;
     }
-    distance[v] = 0;
+    // distance[v] = 0;
+    (*distance)[v] = 0;
     // printArray(distance, n);
     QueueEnqueue(queue, v);
     // printf("Enqueued %d\n", v);
-
     while (!QueueIsEmpty(queue)){
-
         int t = QueueDequeue(queue);
         // printf("Dequeued %d\n", t);
-
         // printf("Neighbor of %d: \n", t);
         for (int i = 0; i < GraphOutDegreeForVertex(g, t); ++i) {
             int w = g->alist[t]->list[i];
             // printf("    %d\n", w);
-            if (distance[w] == INT_MAX){
+            if ((*distance)[w] == INT_MAX){
+            // if (distance[w] == INT_MAX){
                 parent[w] = t;
-                distance[w] = distance[t] + 1;
+                // distance[w] = distance[t] + 1;
+                (*distance)[w] = (*distance)[t] + 1;
                 QueueEnqueue(queue, w);
                 // printf("Enqueued %d\n", w);
             }
         }
     }
-    printArray(distance, n);
+    // printArray(distance, n);
+    QueueDestroy(queue);
     free(parent);
-    return distance;
+    // return distance;
 }
 
-float findAveragePathLengthOneVertex(int* distance){
+float findAvgSingleArrayInt(int* array){
     int sum = 0;
     for(int i=0; i<n; ++i){
-      sum += distance[i];
+        if (array[i] != INT_MAX){
+            sum += array[i];
+        }
     }
     float avg = (float)sum/(float)n;
+    // free(array);
+    return avg;
+}
+
+float findAvgSingleArrayFloat(float* array){
+    float sum = 0;
+    for(int i = 0; i< n; ++i){
+      sum += array[i];
+    }
+    float avg = sum/n;
+    // free(array);
     return avg;
 }
     
-/* average number of nodes in the shortest path between all pairs of nodes */
-//(1) for a given pair of nodes, find shortest path between them in terms of number of hops (nodes)
-//(2) iterate (1) for ALL pairs of nodes
-//(3) take average
-//assumption: node "a" to itself has a path of 1 if there's an edge from A to A, also start at 0
-int findAvgPathLength(graphT g){
-    int* eachVertexAvgs = malloc(sizeof(int) * n);
+float findAvgPathLength(graphT g){
+    float* vertexAvg = malloc(sizeof(float) * n);
+    // int* oneVertex;
+    for (int i = 0; i < n; ++i){
+        int* distance = malloc(sizeof(int) * n);
+        findSSShortestPath(g, i, &distance);
+        vertexAvg[i] = findAvgSingleArrayInt(distance);
+        free(distance);
 
-    // for (int i = 0; i < m; ++i){
-    //     eachVertexAvgs[i] = 
-    // }
-    return 5;
+        // int* oneVertex = findSSShortestPath(g, i);
+        // vertexAvg[i] = findAvgSingleArrayInt(oneVertex);
+        // free(oneVertex);
+
+    }
+    float avgPL = findAvgSingleArrayFloat(vertexAvg);
+    free(vertexAvg);
+    return avgPL;
 }
 
 /*the maximum (shortest path) distance between any pair of nodes in a graph*/
@@ -106,10 +127,21 @@ void findNumTriangles(graphT g){
 }
 
 int main(int argc, char **argv) {
-    graphT graph = ReadFileAndBuildGraph(argv[1]);
-    n = GraphNumVertices(graph);
-    int* spath = findSSShortestPath(graph, 0);
-    float avg = findAveragePathLengthOneVertex(spath);
-    printf("Avg shortest path for node 0: %f\n", avg);
+    // graphT graph = ReadFileAndBuildGraph(argv[1]);
+    // n = GraphNumVertices(graph);
+    // float avg = findAvgPathLength(graph);
+    // printf("Avg shortest path for this graph: %f\n", avg);
+    // GraphDestroy(graph);
+    queueT q = QueueInit(10);
+    for (int i = 0; i < 10; i++) {
+        QueueEnqueue(q, i);
+        printf("%d ", i);
+        if (i < 10) printf("> ");
+    }
+    printf("\n");
+    while (!QueueIsEmpty(q)) {
+        printf("%d ", QueueDequeue(q));
+    }
+    QueueDestroy(q);
     return 0; 
 } 
