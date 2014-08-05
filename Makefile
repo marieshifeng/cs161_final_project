@@ -8,7 +8,7 @@ dd: degree_distribution.c
 	gcc -std=c11 -march=native -Wall -O4 helpers/graph.c degree_distribution.c -o degreedistribution
 
 compare: compare.c
-	gcc -std=c11 -march=native -Wall -O4 helpers/graph.c helpers/queue.c compare.c -o compare
+	gcc -std=c11 -g -march=native -Wall -O4 helpers/graph.c helpers/queue.c compare.c -o compare
 
 clean:
 	rm -rf sccfinder randomgraph degreedistribution compare

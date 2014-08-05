@@ -36,7 +36,7 @@ void QueueEnqueue(queueT queueP, int element){
     fprintf(stderr, "Can't enqueue element: queue is full.\n");
     exit(1);
   }
-  queueP->contents[++queueP->rear] = element;
+  queueP->contents[queueP->rear++] = element;
 
 }
 
@@ -49,7 +49,7 @@ int QueueDequeue(queueT queueP){
 }
 
 int QueueIsEmpty(queueT queueP){
-  return queueP -> rear < 0;
+  return (queueP -> rear < 0 || queueP -> rear == queueP -> front);
 }
 
 int QueueIsFull(queueT queueP){

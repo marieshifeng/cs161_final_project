@@ -121,6 +121,7 @@ void FindSCCs(const char *inputFile) {
       IterativeTarjan(i, s, g);
     }
   }
+  GraphPrint(g);
   StackDestroy(s);
   GraphDestroy(g);
   free(vertexIndex);
