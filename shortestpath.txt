@@ -1,0 +1,10 @@
+Graph: real_networks/input/email_enron.txt
+ Average Shortest Path: 3.394500  Network Diameter: 13
+Graph: real_networks/random_graphs/email_enron_0.txt
+ Average Shortest Path: 4.811784  Network Diameter: 8
+Graph: real_networks/random_graphs/email_enron_1.txt
+ Average Shortest Path: 4.811523  Network Diameter: 8
+Graph: real_networks/random_graphs/email_enron_2.txt
+ Average Shortest Path: 4.811503  Network Diameter: 8
+Graph: real_networks/random_graphs/email_enron_3.txt
+ Average Shortest Path: 4.811207  Network Diameter: 9

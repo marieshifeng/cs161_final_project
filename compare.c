@@ -130,7 +130,7 @@ void findAvgPathLengthNetworkDiameter(graphT g, float* avg, int* max){
         if (insideMax < thisMax) insideMax = thisMax;
 
         free(distance);
-        printf("Calculating Shortest Path for Node %d\n", i);
+        // printf("Calculating Shortest Path for Node %d\n", i);
     }
     *avg = findAvgSingleArrayFloat(vertexAvg);
     *max = insideMax;
@@ -152,18 +152,17 @@ int main(int argc, char **argv) {
     float avg;
     int max;
     findAvgPathLengthNetworkDiameter(graph, &avg, &max);
-    printf("Graph: %s\n Average Shortest Path: %f  Network Diameter: %d\n", argv[1], avg, max);
+    const char *outputFile = argv[2];
+        FILE *out = fopen(outputFile, "w");
+  if (out == NULL) {
+    fprintf(stderr, "Couldn't open output file %s!\n", outputFile);
+    exit(1);
+  }
+
+  
+    fprintf(out, "Graph: %s\n Average Shortest Path: %f  Network Diameter: %d\n", argv[1], avg, max);
+  fclose(out);
     GraphDestroy(graph);
-    // queueT q = QueueInit(10);
-    // for (int i = 0; i < 10; i++) {
-    //     QueueEnqueue(q, i);
-    //     printf("%d ", i);
-    //     if (i < 10) printf("> ");
-    // }
-    // printf("\n");
-    // while (!QueueIsEmpty(q)) {
-    //     printf("%d ", QueueDequeue(q));
-    // }
-    // QueueDestroy(q);
+
     return 0; 
 } 

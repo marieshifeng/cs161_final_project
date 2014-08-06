@@ -1,19 +1,20 @@
 #!/bin/sh
 output="shortestpath.txt"
-"mkdir" "-p" "real_networks/degree_distribution" "real_networks/random_graphs/"
+# "mkdir" "-p" "real_networks/degree_distribution" "real_networks/random_graphs/"
 "touch" "$output"
 FILES=real_networks/input/*
 for input in $FILES
 do
   filename=${input##*/}
   network=${filename%%.*}
-  network_dd="real_networks/degree_distribution/${network}_dd.txt"
+  temp="temp.txt"
   printf "Network %s" "$network"
-  "./degreedistribution" "$input" "$network_dd"
+  "./compare" "$input" "$temp"
+  "cat" "$temp" >> "$output"
   for((j=0;j<10;j++)); do
     graph="real_networks/random_graphs/${network}_${j}.txt"
-    graph_dd="real_networks/degree_distribution/${network}_${j}_dd.txt"
-    "./degreedistribution" "$graph" "$graph_dd"
+    "./compare" "$graph" "$temp"
+    "cat" "$temp" >> "$output"
     printf "."
   done
     printf "\n"
