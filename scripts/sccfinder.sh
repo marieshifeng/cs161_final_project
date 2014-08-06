@@ -1,4 +1,5 @@
 #!/bin/sh
+# Checks the validity of scc_finder.c against given networks and given correct outputs
 for((i=1;i<11;i++)); do
     input="scc_finder/input/network${i}.txt"
     my_output="network${i}.txt"
