@@ -1,0 +1,2 @@
+Graph: real_networks/random_graphs/soc_slashdot_0811_4.txt
+ Average Shortest Path: 5.003145  Network Diameter: 8

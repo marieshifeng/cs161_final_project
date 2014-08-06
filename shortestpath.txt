@@ -8,3 +8,51 @@ Graph: real_networks/random_graphs/email_enron_2.txt
  Average Shortest Path: 4.811503  Network Diameter: 8
 Graph: real_networks/random_graphs/email_enron_3.txt
  Average Shortest Path: 4.811207  Network Diameter: 9
+Graph: real_networks/input/email_enron.txt
+ Average Shortest Path: 3.394500  Network Diameter: 13
+Graph: real_networks/random_graphs/email_enron_0.txt
+ Average Shortest Path: 4.811784  Network Diameter: 8
+Graph: real_networks/random_graphs/email_enron_1.txt
+ Average Shortest Path: 4.811523  Network Diameter: 8
+Graph: real_networks/random_graphs/email_enron_2.txt
+ Average Shortest Path: 4.811503  Network Diameter: 8
+Graph: real_networks/random_graphs/email_enron_3.txt
+ Average Shortest Path: 4.811207  Network Diameter: 9
+Graph: real_networks/random_graphs/email_enron_4.txt
+ Average Shortest Path: 4.809700  Network Diameter: 8
+Graph: real_networks/input/email_eu_all.txt
+ Average Shortest Path: 0.577038  Network Diameter: 11
+Graph: real_networks/random_graphs/email_eu_all_0.txt
+ Average Shortest Path: 9.614561  Network Diameter: 62
+Graph: real_networks/random_graphs/email_eu_all_1.txt
+ Average Shortest Path: 9.687326  Network Diameter: 69
+Graph: real_networks/random_graphs/email_eu_all_2.txt
+ Average Shortest Path: 9.641906  Network Diameter: 64
+Graph: real_networks/random_graphs/email_eu_all_3.txt
+ Average Shortest Path: 9.719234  Network Diameter: 65
+Graph: real_networks/random_graphs/email_eu_all_4.txt
+ Average Shortest Path: 9.651532  Network Diameter: 61
+Graph: real_networks/input/soc_epinions.txt
+ Average Shortest Path: 2.222862  Network Diameter: 16
+Graph: real_networks/random_graphs/soc_epinions_0.txt
+ Average Shortest Path: 6.107566  Network Diameter: 11
+Graph: real_networks/random_graphs/soc_epinions_1.txt
+ Average Shortest Path: 6.108581  Network Diameter: 12
+Graph: real_networks/random_graphs/soc_epinions_2.txt
+ Average Shortest Path: 6.107990  Network Diameter: 11
+Graph: real_networks/random_graphs/soc_epinions_3.txt
+ Average Shortest Path: 6.107174  Network Diameter: 11
+Graph: real_networks/random_graphs/soc_epinions_4.txt
+ Average Shortest Path: 6.109416  Network Diameter: 11
+Graph: real_networks/input/soc_slashdot_0811.txt
+ Average Shortest Path: 3.738938  Network Diameter: 12
+Graph: real_networks/random_graphs/soc_slashdot_0811_0.txt
+ Average Shortest Path: 5.003010  Network Diameter: 8
+Graph: real_networks/random_graphs/soc_slashdot_0811_1.txt
+ Average Shortest Path: 5.002981  Network Diameter: 8
+Graph: real_networks/random_graphs/soc_slashdot_0811_2.txt
+ Average Shortest Path: 5.003759  Network Diameter: 8
+Graph: real_networks/random_graphs/soc_slashdot_0811_3.txt
+ Average Shortest Path: 5.002861  Network Diameter: 8
+Graph: real_networks/random_graphs/soc_slashdot_0811_4.txt
+ Average Shortest Path: 5.003145  Network Diameter: 8

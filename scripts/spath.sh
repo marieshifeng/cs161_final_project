@@ -11,7 +11,7 @@ do
   printf "Network %s" "$network"
   "./compare" "$input" "$temp"
   "cat" "$temp" >> "$output"
-  for((j=0;j<10;j++)); do
+  for((j=0;j<5;j++)); do
     graph="real_networks/random_graphs/${network}_${j}.txt"
     "./compare" "$graph" "$temp"
     "cat" "$temp" >> "$output"
